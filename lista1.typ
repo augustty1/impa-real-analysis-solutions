@@ -16,7 +16,7 @@
 == Verão de 2026 -  IMPA
 
 #align(right)[
-  Augusto G. Lima
+  Augusto Guerra de Lima.
 ]
 
 *1.*
@@ -143,16 +143,17 @@ $ phi((b_i)_(i in NN)) := cases(
  f(2i-1) = 2i "," f(2i) = 2i-1 "," "se" b_i = 1.
 ) $
 
-
-TODO\
 (a) $phi : {0,1}^NN arrow B$ é injetiva.
 
 #h(2em)
+$(b_i)_(i in NN) != (c_i)_(i in NN) => exists i in NN : b_i != c_i$, sem perda de generalidade assuma $b_i = 0$ e $c_i = 1$, então $phi((b_i)_(i in NN)) = f$ tal que $f(2i-1) = 2i$, e $phi ((c_i)_(i in NN)) = f'$ tal que $f'(2i - 1) = 2i - 1$, e portanto $f != f'$, concluí-se, por definição, que $phi$ é injetiva. 
 
-TODO\
 (b) $forall (b_i)_(i in NN)$, $phi((b_i)_(i in NN)): NN arrow NN$ é bijetiva.
 
 #h(2em)
+A imagem inversa de $f$ de ${2i-1,2i}$ é o próprio conjunto ${2i-1, 2i}$, tal que $f(b_i) $ é identidade se $b_i = 0$ ou a troca em $b_i = 1$, $f$ é injetiva portanto.\
+Seja $x in {2i-1, 2i}$, em caso de $b_i = 0$, a pré imagem de $x$ é $x$, ou a troca com o outro elemento de ${2i -1, 2i}$ para $b_i =  1$, e como todo $x in NN$ tem sua pré-imagem dada desta forma, $f$ é sobrejetiva.\
+Concluí-se da injetividade e sobrejetividade que $f$ é bijetiva.
 
 $ therefore^((a) and (b)) |B| >= |{0,1}^NN| >^("(" star ")") alef_0$.
 
@@ -180,12 +181,26 @@ $ (G>=x_i) and (x_j >= G) arrow (G - x_i >= 0) and (x_j - G >= 0) arrow (G-x_i) 
 
 $ G^2 - G(x_i + x_j) + x_i x_j <= 0 => x_i + x_j >= G + (x_i x_ j)/G  => sum_(i=1)^n x_i >= sum_(i=1)^n f(x_i) . $
 
-TODO
+(c) Se nem todos os termos são iguais à $G$, vale a desigualdade estrita $x_i < G < x_j$.
 
-Agora argumentar por divisão de casos que tem que ter dois caras diferentes de $G$ e dai todos convergem para $G$ e fim.
+Se nem todos os termos são iguais, então há pelo menos um elemento $x$ diferente de $G$.\
+#h(2em)
+(i) Se $x < G$, há pelo menos mais um elemento $y > G$ diferente de $G$ tal que $x y = G$.\
+#h(2em)
+(ii) Se $x > G$, o argumento é análogo.
+
+_Indução no número $k$ de termos distintos de $G$_:
+
+#h(2em)
+(i) $k = 0$, implica que todos os termos são iguais à $G$ e vale com igualdade que $A = G$.
+
+#h(2em) 
+(ii) Por hipótese, $forall 0 <j <= k, A = G$. Quer-se verdadeira a afirmação para $s(k) = k + 1$ termos distintos. Isto é, $n - (k + 1)$ iguais a $G$.\
+Ao realizar a substituição nos $n$ termos, obtem-se ao menos $k$ termos distintos, e por $(a)$ e $(b)$, denote-se $A'$ e $G'$ as novas médias aritimética e geométrica após a aplicação de $f$, sob a hipótese de indução. Com efeito, a igualdade é satisfeita com $f^(n-1)$, já que por $(c)$, há ao menos dois termos distintos quando todos não são idênticos.
+
+$ G=^((a)) G' <=^"hip" A' <=^((b)) A => G <= A . $
 
 #fim 
-
 
 *4.*
 
@@ -270,4 +285,31 @@ _Demonstração_:
 
 Como $(x_n)_(n in NN)$ é limitada, $exists a,b in RR :forall n in NN: a <= x_n <= b $. Dessa forma, $forall n in NN :a <= inf X_n <= sup X_n <=b$. Também, $forall n in NN : X_(n+1) subset X_n$, uma vez que $X_n = {x_n} union X_(n+1)$, segue que $a_n = inf X_n <= inf X_(n+1) = a_(n+1)$, uma vez que é comparado o ínfimo de um conjunto com o ínfimo de um de seus subconjuntos e, $b_n = sup X_n >= sup X_(n+1) = b_(n+1)$, um vez que é comparado o supremo de um conjunto com o supremo de um de seus subconjuntos; com efeito, $inf X_n = a_n $ é inferiormente limitado por $inf X_1 = a_1$ e $sup X_n $ é superiormente limitado por $sup X_1 = a_1$, com a sequência $(a_n)_(n in NN)$ de ínfimos sendo não-decrescente e  sequência $(b_n)_(n in NN)$ de supremos sendo não-crescente, pelo teorema da convergência monótona, ambas $(a_n)_(n in NN)$ e $(b_n)_(n in NN)$ são convergentes.
 
-#fim 
+#fim
+
+*(ii)*
+
+$lim inf x_n $ e $lim sup x_n$ são, respectivamente, o menor e o maior valor de aderência da sequência $(x_n)_(n in NN)$.
+
+_Demonstração_:
+
+(a) $lim inf x_n = lim a_n $ é um valor de aderência de $(x_n)_(n in NN)$.
+
+Seja o limite dos ínfimos de $X_n$, $lim a_n = Alpha => forall epsilon: exists n,m in NN: n > m => a_n in (Alpha - epsilon, Alpha + epsilon) $. Como $Alpha + epsilon$ não é uma cota inferior de $X_n$, dado que $a_n$ é o ínfimo, a maior das cotas inferiores, segue que, por propriedades de ínfimo, $exists n' >= n: Alpha - epsilon < a_n' <= x_n' < Alpha + epsilon$, então $x_n' in (Alpha - epsilon, Alpha + epsilon)$, como uma infinidade de índices de $(x_n)_(n in NN)$ pertencem ao intervalo, $Alpha$ é limite de uma subsequência de $(x_n)_(n in NN)$ e, portanto, é um valor de aderência da sequência.
+
+(b) $lim sup x_n = lim b_n$ é um valor de aderência de $(x_n)_(n in NN)$.
+
+Analogamente, seja o limite dos supremos de $X_n$, $lim b_n = Beta => forall epsilon: exists n,m in NN : n>m => b_n in (Beta - epsilon, Beta + epsilon)$.\
+Como $Beta - epsilon$ não é uma cota superior de $X_n$, segue que $exists n ' >= n : Beta - epsilon <x_n' <= b_n' < Beta + epsilon$, de $x_n' in (Beta - epsilon, Beta + epsilon)$, $lim sup x_n$ é um valor de aderência da sequência.
+
+(c) $lim inf x_n = lim a_n$ é o menor valor de aderência de $(x_n)_(n in NN)$.
+
+Afim de contradição, $exists gamma < Alpha$ que é um valor de aderência. Como $lim a_n = sup a_n$, por propriedades de supremo, $exists n in NN : gamma < a_n <= Alpha => exists n' in NN: n '> n:  gamma < inf X_n <= x_n'$ por propriedades de ínfimo, i.e. $gamma < a_n <= x_n'$.\
+Como $gamma$ é um valor de aderência, $forall epsilon: n,n' in NN: n'> n: x_n in (gamma - epsilon, gamma + epsilon)$, porém, para $epsilon = a_n - gamma => a_n = gamma + epsilon$, de $gamma < a_n <= x_n'$, não há $x_n'$ no intervalo $(gamma - epsilon, gamma + epsilon)$, contradição com $gamma $, valor de aderência, portanto $lim inf x_n$ é o menor valor de aderência da sequência $(x_n)_(n in NN)$.
+
+(d) $lim sup x_n = lim b_n$ é o maior valor de aderência de $(x_n)_(n in NN)$.
+
+Analogamente, $exists gamma > Beta $ que é um valor de aderência. Como $lim b_n = inf b_n$, $exists n in NN: Beta <= b_n < gamma => exists n' in NN: n'>n: x_n' <= sup X_n < gamma $, i.e. $x_n' <= b_n < gamma$.\
+Como $gamma$ é um valor de aderência, existem uma infinidade de termos $epsilon$-vizinhos de $gamma$. Contudo, se $epsilon = gamma - b_n => b_n = gamma - epsilon$, de $x_n' <= b_n < gamma$, não há $x_n'$ no intervalo $(gamma - epsilon, gamma + epsilon)$, contradição com $gamma$ valor de aderência, logo $lim sup x_n$ é o maior valor de aderência da sequência $(x_n)_(n in NN)$.
+
+#fim
