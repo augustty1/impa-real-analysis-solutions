@@ -1,3 +1,16 @@
+#import "@preview/tablex:0.0.8": tablex
+
+#set page(header: align(center + horizon)[
+  #grid(
+    columns: (1fr, 1fr, 1fr),
+    strong[Lista 1],
+    [Análise na Reta],
+    align(right)[Soluções],
+  )
+  #line(length: 100%)
+])
+
+
 #set page(paper: "us-letter", numbering: "1")
 #set text(font:"New Computer Modern",size:11pt)
 #set par(justify: true)
@@ -139,8 +152,8 @@ _Demonstração_:
 Considere $phi: {0,1}^NN arrow B, (b_i)_(i in NN) mapsto (f: NN arrow NN)$, a função injetiva que associa uma sequência infinita de ${0,1}$ a uma bijeção entre números naturais, em $B$, sob a seguinte regra:
 
 $ phi((b_i)_(i in NN)) := cases(
- f(2i-1) = 2i -1 "," f(2i)=2i "," "se" b_i = 0 ";" ,
- f(2i-1) = 2i "," f(2i) = 2i-1 "," "se" b_i = 1.
+ f(2i-1) = 2i -1 "," f(2i)=2i "," "se" b_i = 0", " ,
+ f(2i-1) = 2i "," f(2i) = 2i-1 "," "se" b_i = 1
 ) $
 
 (a) $phi : {0,1}^NN arrow B$ é injetiva.
@@ -272,6 +285,48 @@ Ou seja, $m + n k a = q a + n k a => a = m / q in QQ$, mas $alpha = k a in QQ$ �
 Portanto, $inf G^+ = 0$  e $G = {m + n alpha | m , n in ZZ and alpha in RR"\ " QQ } "é denso em" RR$.
 
 #fim
+
+*5. (Teorema de Cantor-Bernstein)*
+
+Sejam $A$ e $B$ conjuntos, $f: A arrow B$ e $g:B arrow A$ funções injetivas, implicam em $h: A arrow B$ bijetiva.
+
+_Demonstração_:
+
+Tomando $a in A $ e considerando aplicações sucessivas das injeções $f$ e $g$, é possível que se retorne a $a$, mas pela injetividade de $g$, $exists ! b : a = g(b) $.
+
+$ a arrow.stroked^f b_1 arrow^g a_1 arrow.stroked^f dots a_n arrow.stroked^f b arrow^g a $
+
+É possível, ter-se de forma indefinida, elementos sucessivos distintos.
+
+$ dots arrow^g a arrow.stroked^f b_1 arrow^g a_1 arrow.stroked^f dots a_n arrow.stroked^f b_(n+1) arrow^g dots $
+
+Da injetividade de $g$, aplicações sucessivas de $a in A"\ " g(B) $.
+
+$ a arrow.stroked^f b_1 arrow^g a_1 arrow.stroked^f dots a_n arrow.stroked^f b_(n+1) arrow^g dots $
+
+Da injetividade de $f$, aplicações sucessivas de $b in B "\ " f(A)$.
+
+$ b arrow^g a_1 arrow.stroked^f b_1 arrow^f dots b_n arrow^f a_(n+1) arrow.stroked^g dots $
+
+Seja $A_1$ o conjunto de elementos de $A$ do terceiro caso; $A_2$ o conjunto de elementos de $A$ do primeiro, segundo e quarto caso; $B_1$ o conjunto de elementos de $B$ do terceiro caso e $B_2$ o conjunto de elementos de $B$ do primeiro, segundo e quarto caso.\
+
+Por construção, $A_1 inter A_2 = (A "\ "g(B)) inter [A "\ "(A "\ " g(B))] = emptyset.rev$, e analogamente, $B_1 inter B_2 = emptyset.rev$ e, $A_1 union A_2 = A$, $B_1 union B_2 = B$.\
+
+(a) $f(A_1) = B_1$, seja $a in A_1$, os elementos da aplicação sucessiva em $B$ pertencem ao terceiro caso.
+
+(b) $g(B_2) = A_2$, seja $b in B_2$, desde que não pertence ao terceiro caso, aplicações sucessivas não iniciaram em $a in A_1$, $g(b) in A$ é um elemento da aplicação sucessiva que também não inicia em $a in A_1$, e logo $g(b) in A_2$. Inversamente, $forall a in A_2: g(B_2)$.
+
+Define-se $h: A arrow B $, 
+
+$ h(x):=^((a) and (b)) cases(
+  f(x)", se" x in A_1", " ,
+  g^(-1)(x)", se" x in A_2
+) $
+
+Que é injetiva, se $x,y in A_1$, $f$ é injetiva, então $h$ é injetivapara tal restrição. Se $x,y in A_2, h$ é injetiva porque é também $g$. Se $x in A_1 "e" y in A_2, h(x) in B_1 "e" h(y) in B_2, h(x) != h(y) because B_1 inter B_2 = emptyset.rev $.\
+Também é sobrejetiva, se $y in B_1, exists x in A_1, f(x) = y because f(A_1) = B_1$. Se $y in B_2, x=g(y)$, como $g(B_2) = A_2, x in A_2 "e" h(x) = g^(-1)(g(y))=y$. Concluí-se que $h: A arrow B$ é uma função bijetiva i.e. $|A|=|B|$.
+
+#fim 
 
 *6.*
 
