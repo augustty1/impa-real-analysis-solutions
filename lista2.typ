@@ -85,6 +85,24 @@ Como $Sigma a_i$ converge e $Sigma a_(i^2)$ é uma subsequência convergente, a 
 
 #fim
 
+b) $ (b_i)_(i in NN) := cases(
+    1/k", se " k^2 < i <= k^2 + k";",
+    -1/k", se " k^2 + k < i <(k+1)^2";",
+    0", se " i=(k+1)^2. 
+) $
+
+$(b_i)_(i in NN)$ é divergente, uma vez que $s_(k^2 + k ) = 1$ e $s_((k+1)^2) = 0, forall k in NN union {0}$.
+
+*Lema 1.4:* Índices da forma $k^2 + 2 r -1 $ são associados com $sigma(k^2 + 2r - 1 )= k^2 + k + r > k^2 + k$, i.e. sucedem $k^2 + k$; já os índices da forma $k^2 + 2r$ são associados com $sigma(k^2 + 2r) = k^2 + k + 1 - r$ e, desde que $1 <= r <= k$, $k^2 + k + 1 - r <= k^2 + k$.\
+Como em $(k^2, (k+1)^2) inter NN$, todo índice natural da forma $k^2 + 2r -1 $ é sucedido por um índice natural da forma $k^2 + 2r$, segue que sob a bijeção $sigma$, se todo índice $sigma(k^2 +2r -1)$ é sucedido por um índice $sigma(k^2 + 2r)$, em $sigma((k^2, (k+1)^2]) inter NN$, então, neste intervalo interseccionado, todo índice $i> k^2 + k $ é sucedido por um índice $i'<=k^2 + k$.
+
+- TODO: Demonstrar que pelo lema 1.4 eu vou demonstrar que a série converge. 
+
+
+#fim
+
+
+
 #pagebreak()
 
 #line(length: 100%)
@@ -100,6 +118,26 @@ Desde que todo $(y- epsilon.alt_y, y+ epsilon.alt_y) inter X subset Y$. Logo $ex
 
 #fim
 
+b) ($=>$) Se $Y$ é aberto em $X$, então $exists U subset RR: U inter X = Y$, e $RR backslash U$ é fechado.\
+$X backslash Y = X backslash (U inter X) = X inter (RR backslash U).$
+
+*Lema 3.1:* Sejam $A, B subset RR$, $A inter B subset A$, então $overline(A inter B) subset overline(A)$; analogamente para $overline(A inter B) subset overline(B)$. Logo $overline(A inter B) subset overline(A) inter overline(B)$.
+
+$overline(X backslash Y) = overline(X inter (RR backslash U)) subset overline(X) inter overline((RR backslash U)) = overline(X) inter (RR backslash U)$, pelo _Lema 3.1_. Então $overline(X backslash Y) inter X subset (overline(X) inter (RR backslash U)) inter X$.\
+
+Tomando o lado direito da relação, $(overline(X) inter (RR backslash U)) inter X = (overline(X) inter X ) inter (RR backslash U) = X inter (RR backslash U ) = X backslash Y $, logo $overline(X backslash Y) inter X subset X backslash Y$; e a relação simétrica é válida, logo $overline(X backslash Y) inter X = X backslash Y$. Por definição, $X backslash Y$ é fechado em $X$.
+
+($arrow.l.double$) Se $X backslash Y$ é fechado em $X$, então $overline(X backslash Y) inter X = X backslash Y$, e $overline(X backslash Y)$ é um conjunto de pontos de aderência, portanto é fechado. Como $Y subset X$, então $Y = X backslash (X backslash Y)$\
+$ Y = X inter [RR backslash ((X backslash Y) inter X)] = X inter ((RR backslash (X backslash Y)) union (RR backslash X)) = (X inter (RR backslash (X backslash Y))) union (X inter (RR backslash X)) = \ (X inter (RR backslash (X backslash Y))) union emptyset =  X inter (RR backslash (X backslash Y)). $.
+
+Como $ RR  backslash (X backslash Y) = U$ é aberto, $U inter X = Y$, então $Y$ é aberto em $X$.
+
+- TODO: Mostrar que a reciproca é verdadeira para $U$, ou tomar a contrapostiva.
+
+#fim
+
+
+
 #pagebreak()
 
 
@@ -113,3 +151,11 @@ b) Prove que se $F$ é fechado $F_0$ é o conjunto dos pontos de condensação d
 
 a) Se $X_0 := {a in X bar forall epsilon.alt>0 : X inter (a - epsilon.alt, a + epsilon.alt) "é não-enumerável"}$, seu complementar portanto é $X backslash X_0 := {a in X bar exists epsilon.alt > 0 : X inter (a - epsilon.alt, a + epsilon.alt) "é enumerável"}$. Quer-se demonstrar que $ X backslash X_0$ é enumerável e $X_0$ é fechado em $X$.\
 Para cada $a in X backslash X_0$, existe um intervalo $(a - epsilon.alt, a + epsilon.alt)$ contendo enumeráveis pontos de $X$, pela densidade de $QQ$ em $RR$, existe $q in (a - epsilon.alt,a)$ e $q' in (a, a+ epsilon.alt)$ tal que o intervalo $(q,q')$ tem $a$. Como $(q,q') inter X subset ( a - epsilon.alt, a+ epsilon.alt) inter X $, pela enumerabilidade do lado direito, tem-se a do lado esquerdo  da relação de inclusão. Considere o conjuntos dos pares racionais, $S := {q,q': (q,q') inter X "é enumerável"}$, os pares associados aos intervalos $(a -epsilon.alt, a + epsilon.alt)$, pertencem a $S$, e $S subset QQ^2$ é enumerável. A reunião enumerável sob $S$ dos intervalos interseccionados $(q,q') inter X$ é enumerável, i.e $U = union.big_(q,q' in S)(q,q') inter X$ é enumerável e, desde que para todo $a$ existem $q, q'$ de forma que $a in (q,q')$, então $X backslash X_0 subset U$, logo $X backslash X_0$ é enumerável. 
+
+#pagebreak()
+
+#line(length: 100%)
+
+*6:* Seja $K$ o conjunto de Cantor e $tilde(K) subset RR$, $tilde(K) != emptyset$ um conjunto compacto, sem pontos isolados e de interior vazio. Prove que existe uma bijeção crescente $f: RR -> RR$ tal que $f(K) = tilde(K)$.
+
+#line(length: 100%)
