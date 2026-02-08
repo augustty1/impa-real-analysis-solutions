@@ -107,6 +107,48 @@ Como $|s_i| <= 1/k$ e $lim_(k -> infinity) 1/k = 0$, então, pelo teorema do con
 
 #line(length: 100%)
 
+*2:* Sejam $(a_i)_(i in NN)$ uma sequência de termos positivos, $s_0 = 0$ e $s_n = sum_(i=1)^n a_i, forall n>=1$.\
+a) Prove que, se $sum_(i=1)^infinity a_i = +infinity$, então 
+$ sum_(i=1)^infinity a_i/s_i = +infinity " e " sum_(i=1)^infinity a_i/s_i^alpha "converge, " forall alpha > 1 . $
+b) Prove que, se $sum_(i=1)^infinity a_i$ converge, então, se $r_n = sum_(i=n)^infinity a_i = (sum_(i=1)^infinity a_i) - s_(n-1), forall n in NN, $
+$ sum_(i=1)^infinity a_i/r_i = +infinity " e " sum_(i=1)^infinity a_i/r_i^lambda "converge, " forall lambda < 1 . $
+
+#line(length: 100%)
+
+a) Define-se $S_i := {n in NN | 2^i <= s_n <= 2^(i+1)}$ i.e. os índices naturais tais que as reduzidas de $Sigma a_i$ tem seu valor entre $2^i$ e $2^(i+1)$, potências de $2$ consecutivas. Afirma-se que $S_i = [a,b] inter NN$ tal que $sum_(i in S_k) a_i/s_i = sum_(i=a)^b a_i / s_i $. Com efeito, para $S_i = emptyset$ é evidente, tome não vazio; $S_i$ é limitado, como $Sigma a_i$ é divergente, $lim_(n -> infinity) s_n = infinity$, dessa forma $s_n >= 2^(i+1)$ para algum $n$ suficientemente grande, e $exists a,b in NN: S_i = [a,b] inter NN$ ou $S_i = emptyset$ para todo $i in NN$.\
+Se $n in S_i$ então $s_n >= 2^i$ e $s_(n-1) < 2^(i+1)$, como $a_n = s_n - s_(n-1)$, deve ser 
+$ a_n/s_n = (s_n - s_(n-1))/s_n = 1 - s_(n-1)/s_n >= 1 - 2^(k+1)/2^k = 1/2 . $
+Segue que $sum_(i in S_k) a_i / s_i >= 1/2 $ para $S_k != emptyset$. Os termos da série são não negativos, logo $sum_(i=1)^infinity a_i / s_i = sum_(k=0)^infinity sum_(i in S_k) a_i / s_i$ pela associativadade de termos não negativos.\
+Como $lim_(n -> infinity) s_n = + infinity => forall K: exists n in NN: s_n >= 2^K$, logo existe $i >= K$ tal que $S_i != emptyset$, portanto o conjunto ${i in NN: S_i != emptyset}$ deve ser infinito. Seja $m in NN$, considerando os primeiros $m$ índices naturais $i_1< i_2 < ...< i_m$ tais que $S_(i_j) != emptyset$, pelo fato de que $sum_(i in S_k) a_i / s_i >= 1/2$, tem-se que $sum_(j=1)^m sum_(i in S_k_j) a_i / s_i >= sum_(j=1)^(m) 1/2 = 1/2 m$. Por instanciação universal de $m$, $sum_(i=1)^infinity a_i / s_i = + infinity$. Concluí-se sobre a divergência de $sum_(i=1)^infinity a_i / s_i$ para $alpha = 1$
+
+Como supracitado, a família $(S_i)_(i in NN)$ tem infinitos conjuntos não vazios. Para $alpha > 1 $ vale
+$ a_i / s_i^alpha <= a_i / (2^i)^alpha = a_i/2^(alpha i) . $
+Assim, $sum_(i in S_k) a_i / s_i^alpha <= 1/2^(alpha i) sum_(i in S_k) a_i$. Mas como todo $s_i < 2^(k+1)$ para $i in S_k$; como $s_i$ é a reduzida de termos positivos, isso implica que a soma dos incrementos correspondentes aos índices de $S_k$ satisfazem $sum_(i in S_k) a_i <= 2^(k+1)$. De fato, para a soma dos $a_i$ em $S_k$ tem-se $sum_(i in S_k) a_i = sum_(i = a)^b a_i = s_b - s_(a-1) < 2^(k+1) - 2^k = 2^k$.\
+
+$ sum_(i in S_k) a_i / s_i^alpha <= 1/2^(alpha i) sum_(i in S_k) a_i <= 2^(k+1) / 2^(alpha k) = 2 / (2^((alpha-1)k)) = 2/(2^(alpha -1 )^k). $
+
+A série $sum_(i=0)^infinity 2/2^((alpha-1)i) >= sum_(i=1)^infinity a_i / s_i^alpha$ é uma série geométrica de razão $2^(-(alpha-1))<1$, já que $alpha > 1$ e portanto converge, segue que $sum_(i=1)^infinity a_i / s_i^alpha$ converge.  
+
+#fim
+
+b)  A demonstração é análoga, vejamos:\
+A priori, note que $((r_i))_(i in NN)$ é decrescente pela definição, e $a_n = r_n - r_(n+1)$; Além disso, $r_n = a_n + r_(n+1)$ com $forall n in NN: a_n > 0$, então $0 < r_(n+1) < r_n$ é estritamente decrescente.\
+Analogamente a a), $a_i / r_i = 1 - r_(n+1) / r_n$.\
+Define-se $R_i := {n in NN | 1/2^(i+1) < r_n <= 1/2^i}$.\
+Como $lim_(n -> infinity) r_n = 0$, na família $(R_i)_(i in NN)$ existem infinitos conjuntos não vazios, finitos já que $(r_i)_(i in NN)$ é estritamente decrescente.\
+Se $i in R_k$ então\
+$ r_i <= 1/2^i " e " r_(i+1) > 1/2^(i+1) => r_(i+1)/r_i <= 2^i / 2^(i+1) = 1/2 => a_i / r_i >= 1 - 1/2 = 1/2 . $
+Segue que $sum_(i in R_k) a_i / r_i >= 1/2$, pela infinidade de conjuntos de índices não vazios, $sum_(i=1)^infinity a_i / r_i = sum_(k=0)^infinity sum_(i in R_k) a_i / r_i = + infinity$, logo $sum_(i = 1)^infinity a_i / r_i$ diverge.\
+
+Para $alpha > 1$, se $n in R_i$, então $r_i <= 1/2$ e portanto $a_i/r_i^alpha <= 2^((i+1)alpha)a_i$. Dessa forma, como $sum_(i in R_k) a_i = r_(i_k) - r_(i_j + 1)$ para $i_k ... j_k in R_k$ tem-se $sum_(i in R_k) a_i <= 1/2^k$.\
+De $sum_(i in R_k) a_i / r_i^alpha <= 2^((k+1)alpha)/2^k = 2^alpha 2Ç ((alpha -1)k)$, obtém-se $sum_(i = 1)^infinity a_i / r_i^alpha <= 2^alpha sum_(i=0)^infinity 2^((alpha - 1)i)$, que de $alpha>1$ confere uma série geométrica convergente e portanto $sum_(i=1)^infinity a_i / r_i^alpha$ para $alpha > 1$.
+
+#fim 
+
+#pagebreak()
+
+#line(length: 100%)
+
 *3:* Sejam $X,Y subset RR$ com $Y subset X$. Dizemos que $Y$ é _fechado_ em $X$ se $overline(Y) inter X = Y$, e que $Y$ é _aberto_ em $X$ se, para todo $y in Y$, existe $epsilon.alt>0$ tal que $(y-epsilon.alt, y+ epsilon.alt) inter X subset Y$.\
 a) Prove que, se $Y$ é aberto em $X$, então existe $U subset RR$ aberto com $U inter X = Y$.\
 b) Prove que $Y$ é aberto em $X$ se, e só se, $X backslash Y$ é fechado em $X$.
@@ -200,3 +242,42 @@ Define-se a bijeção $f:RR -> RR$ para $partial K$, de forma que $f(0) = inf ti
 #align(center)[
   #image("cantor.png", width: 50%)
 ]
+
+*Lema 6.2:* O intervalo em $f(RR)$ pode ser dividido em dois, mas a interseção com $tilde(K)$ é igual. De fato, $[f(b_(i+1)^((n))), f(b_i^((n)))] inter tilde(K) = ([f(b_(i+1)^((n))),a] union (a,b) union [b, f(b_i^((n)))]) inter tilde(K)= ([f(b_(i+1)^((n))),a] inter tilde(K)) union ((a,b) inter tilde(K)) union ([b, f(b_i^((n)))] inter tilde(K))= ([f(b_(i+1)^((n))),a] inter tilde(K)) union ([b,f(b_i^((n)))] inter tilde(K)) = ([f(b_(i+1)^((n))),a] union [b,f(b_i^((n)))]) inter tilde(K)$.
+
+*Lema 6.3:* Pela definição dos intervalos, ambos $[f(b_(i+1)^((n))),a]$ e $[b, f(b_i^((n)))]$ tem comprimento menor que o comprimento de $|f(b_(i+1)^((n))) - f(b_i^((n)))| = 2/3$. Então, tomando-os indutivamente, o comprimento é menor que $(2/3)^n (sup tilde(K) - inf tilde(K))$.
+
+*Lema 6.4:* Para todo $n in NN$ e $i$ ímpar, $tilde(k) in tilde(K) <=> tilde(k) in [f(b_i^((n))),f(b_(i+1))^((n))]$.\
+($=>$) Pelo _Lema 6.2_, tomando $i$ ímpares,
+$ union.big_(0<i<2^(n+1)) ([f(b_i^((n))),f(b_(i+1)^((n)))] inter tilde(K)) = tilde(K) . $
+Para todo $n in NN$ e $i$ ímpar, se $tilde(k) in tilde(K)$ então $tilde(k) in [f(b_i^((n))),f(b_(i+1)^((n)))]$.\
+($arrow.l.double$) Pelo _Lema 6.3_, seja $c in.not tilde(K)$, $inf tilde(K) < c < sup tilde(K)$; afim de contradição, assumindo $x in [f(b_i^((n))), f(b_(i+1)^((n)))]$ para todo $n in NN$ e $i$ ímpar. Então pelo _Lema 6.1_, $c in (a,b)$. Tomando $epsilon.alt = min(|c-a|,|b-c|)$, como o comprimento de $[f(b_i^((n))),f(b_(i+1)^((n)))]$ tende a $0$, obtém-se um desses intervalos possuindo $c$ de comprimento menor do que $epsilon.alt$, mas então $$ e $$ estariam em $(a,b)$, contradição com $(f(b_i^((n))),f(b_(i+1)^((n)))) inter tilde(K) = emptyset$.
+
+*Lema 6.5:* $f(partial K)$ é denso em $tilde(K)$. Com efeito, tome $tilde(k) in tilde(K)$, e $(tilde(k) - epsilon.alt, tilde(k) + epsilon.alt)$, desde que o comprimento dos intervalos supracitados tendem a $0$, existe um intervalo $[f(b_i^((n))),f(b_(i+1)^((n)))]$ de comprimento menor que $epsilon.alt$ que possui $tilde(k)$, um dos extremos está em $(tilde(k) - epsilon.alt, tilde(k) + epsilon.alt)$ e em $f(partial K)$ portanto.
+
+Em segundo lugar, mostraremos a definição de $f$ para todo $k in K$, fazendo-se necessários os lemas.
+
+*Lema 6.6:* Uma sequência $(x_i)_(i in NN)$ de $partial K$ converge $<=> (f(x_i))_(i in NN)$ converge.\
+($=>$) Se $(x_i)_(i in NN)$ converge para $l in K$, então $forall n in NN: l in [b_i^((n)), b_(i+1)^((n))]$ para $i$ ímpar. $exists N in NN: m > N => x_m in [b_i^((n)), b_(i+1)^((n))]$. Como $f$ é crescente em $partial K$ (será mostrado adiante), $m > N => f(b_i^((n))) <= f(x_m) <= f(b_(i+1)^((n)))$. Para todo $epsilon.alt > 0$, existe $n$ tal que $f(b_i^((n))) - f(b_(i+1)^((n))) < epsilon.alt$, logo $m,n > N => |f(x_m) - f(x_n)| < epsilon.alt$, concluí-se que $(f(x_i))_(i in NN)$ é uma sequência de Cauchy e logo converge.\
+($arrow.l.double$) Se $(f(x_i))_(i in NN)$ converge para $l' in tilde(K)$, então, pelo _Lema 6.4_ para todo $n in NN$, $l' in [f(b_i^((n))), f(b_(i+1)^((n)))]$ para algum $i$ ímpar.
+
+Note que se $(x_i)_(i in NN)$ e $(y_i)_(i in NN)$ de $partial K$ convergem para o mesmo limite $l$, então $lim_(i->infinity) f(x_i) = lim_(i -> infinity) f(y_i)$. Ora, se não fosse o caso, afim de contradição, sem perda de generalidade toma-se $L'=lim_(i -> infinity) f(y_i) > lim_(i -> infinity) f(x_i) = L$. Sabe-se que $L in [f(b_i^((n))), f(b_(i+1)^((n)))]$ para todo $n in NN$ e $i$ ímpar. Tomando-se $epsilon.alt = (L' - L)/2 > 0$, existem $N$ e $I$ tais que $L in [f(b_I^((N)), b_(I+1)^((N))] subset (L - epsilon.alt, L + epsilon.alt)$, e escolhendo $N'$ com $m > N$, então $f(y_m) in [f(b_I^((N))), f(b_(I+1)^((N)))]$. Deve ser então que $y_m in [b_I^((N)), b_(I+1)^((N))]$ e $lim_(i->infinity) y_i = l'$ está neste intervalo. Pode-se tomar então $tilde(N)$ tal que $m > tilde(N)$ implica em $x_m in [b_I^((N)), b_(I+1)^((N))]$. Mas isso significaria $f(x_m) in (L - epsilon.alt, L + epsilon.alt)$ donde $(L'- epsilon.alt, L' + epsilon.alt)$ não possui termos de $(x_i)_(i in NN)$ para $m$ suficientemente grande, contradição, portanto $L=L'$.
+
+Define-se a bijeção $f: RR -> RR, forall k in K$ como $f(k) = lim_(i -> infinity) f(x_i)$ para alguma $(x_i)_(i in NN)$ de $partial K$ com $lim_(i -> infinity) x_i = k$, que existe pela definição de ponto de acumulação ($k = lim_(i -> infinity) x_i$, onde $(x_i)_(i in NN)$ é uma sequência de elementos de $partial K$, dois a dois distintos), já que o conjunto de Cantor $K$ não tem pontos isolados.
+
+Em terceiro lugar, define-se $f: RR -> RR$ para $x in.not K$. Se $x>1 => f(x) = x - 1 + sup tilde(K)$ e $x < 0 => f(x) = x + inf tilde(K)$.\
+Se $0 < x < 1$, tem-se $x in (b_I^((N)), b_(I+1)^((N)))$, define-se então $f(x) = alpha x + beta$; $alpha = (f(b_(I+1)^((N))) - f(b_I^((N)))) / (b_(I+1)^((N)) - b_I^((N)))$ e $beta = (f(b_(I+1)^((N)))b_(I+1)^((N)) - f(b_(I+1)^((N)))b_I^((N))) / (b_(I+1)^((N)) - b_I^((N)))$. Logo $f(b_I^((N)), b_(I+1)^((N))) = (f(b_I^((N))),f(b_(I+1)^((N))))$.
+
+Finalmente, definiu-se $f: RR->RR$, ainda é necessário demonstrar que $f$ é crescente e uma bijeção.
+
+*Proposição 6.7:* $f: RR -> RR$ é crescente.\
+$f$ é crescente no conjunto $partial K$. De fato, basta verificar que é crescente em qualquer $B_i$. Se $i = 0$ é evidente. Por indução, se é crescente em $B_i$, levando em conta que, para $i$ ímpar, $b_i^((n)) < a_i^((n+1)) < a_(i+1)^((n+1)) < b_(i+1)^((n))$, e pela definição tem-se $f(b_i^((n))) < f(a_i^((n+1))) < f(a_(i+1)^((n+1))) < f(b_(i+1)^((n)))$, também é crescente em $B_(i+1)$, portanto é crescente em $partial K$.\
+Para todo $k in K$, $f$ continua sendo crescente nessa extensão. Se $k in K$, então $k in [b_i^((n)), b_(i+1)^((n))]$, então deve ser que $f(k) in [f(b_i^((n))), f(b_(i+1)^((n)))]$, seja $k$ um ponto no intrior do intervalo ou nos extremos, pois os extremos são pontos de acumulação unilaterais. Assim, para $k, k' in K, k < k'$ existem $N,i_1,i_2$ tais que $k' in [b_(i_2)^((N)), b_(i_2 + 1)^((N))] subset ((k + k')/2, (3k'-k)/2)$, e $k in [b_(i_1)^((N)), b_(i_1 + 1)^((N))] subset ((3k' - k)/2, (k+k')/2)$ e tem-se portanto $f(k) <= f(b_(i_1+1)^((N))) < f(b_(k_2)^((N))) <= f(k')$. Tem-se que $f(K) = tilde(K)$, porque $forall tilde(k) in tilde(K)$ é limite de uma sequência convergente de $f(partial K)$, e é imagem de um elemento de $K$ na sequência equivalente em $partial K$, e reciprocamente todo elemento em $K$ tem imagem em $tilde(K)$.\
+Por fim, tem-se que $f$ é crescente em $(-infinity, 0) union (1, +infinity)$ e $f([0,1]) subset [inf tilde(K) , sup tilde(K)]$. Falta desmontrar que $f$ é crescente em $[0,1]$. Dados $x,y in [0,1], x < y$, tem-se que $f(x) < f(y)$ se $x,y in K$. Se ambos não estão, então $x in (b_i^((n)), b_(i+1)^((n)))$ e $y in (b_j^((n)), b_(j+1)^((n)))$ com $i,j$ pares; se $i=j$, então $f(x) < f(b_(i+1)^((n))) < f(b_j^((n)))< f(y)$. O caso em que apenas um de $x,y$ pertence à $K$ se demonstra analogamente.
+
+*Proposição 6.8:* $f: RR -> RR$ é uma bijeção.\
+Como $f$ é crescente pela _Proposição 6.7_, $f$ é injetiva. Quer-se demonstrar que $f$ é sobrejetiva. De fato, se $x in RR$ tem-se por divisão de casos, se $x in tilde(K)$ então $x in f(K)$. Se $x in.not tilde(K)$, pode ser que $x > sup tilde(K)$ ou $x < inf tilde(K)$, mas nesse caso tem-se uma função afim. E no caso restante, $x in (f(b_I^((N))), f(b_(I+1)^((N))) )$ com $I$ par, com isso $x in f((b_I^((N)), b_(I+1)^((N))))$.
+
+Concluí-se que $f: RR -> RR$ é uma bijeção, pela _Proposição 6.8_, crescente, pela _Proposição 6.7_ tal que $f(K) = tilde(K)$, pela _Proposição 6.7_.
+
+#fim
